@@ -51,7 +51,11 @@ export default class StorageUtil {
   static getUser(): IUSer {
     return StorageUtil.getObject(Constant.USER_DATA) as IUSer;
   }
-  static isLoggedIn():boolean {
+  static isLoggedIn(): boolean {
     return !GenUtil.isEmpty(StorageUtil.getUser());
+  }
+  static logOut(): boolean {
+    StorageUtil.setUser({} as IUSer);
+    GenUtil.restartApp();
   }
 }

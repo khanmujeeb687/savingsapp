@@ -23,7 +23,7 @@ export class UserService {
   }
 
   static async saveUser(user: IUSer) {
-    const [err, data] = await awaitTo(firestore().collection('user').add(user));
+    const [err, data] = await awaitTo(firestore().collection('user').add({...user,...{amount_owe:0,createdAt:new Date().getTime()}}));
     if (err) {
       return [err, {}];
     } else {
